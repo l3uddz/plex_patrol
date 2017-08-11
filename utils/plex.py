@@ -139,8 +139,12 @@ class PlexStream:
         else:
             self.type = 'Unknown'
         if self.type == 'transcode':
-            self.video_decision = stream['TranscodeSession']['videoDecision']
-            self.audio_decision = stream['TranscodeSession']['audioDecision']
+            if 'TranscodeSession' in stream:
+                self.video_decision = stream['TranscodeSession']['videoDecision']
+                self.audio_decision = stream['TranscodeSession']['audioDecision']
+            else:
+                self.video_decision = 'Unknown'
+                self.audio_decision = 'Unknown'
         else:
             self.video_decision = 'directplay'
             self.audio_decision = 'directplay'
