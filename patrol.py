@@ -78,7 +78,7 @@ def check_streams():
 
     for stream in streams:
         if stream.user in config.WHITELISTED_USERS:
-            log.info("Skipping whitelisted user: %s", stream.user)
+            log.debug("Skipping whitelisted user: %s", stream.user)
             continue
         else:
             log.info("Checking stream: %s", stream)
