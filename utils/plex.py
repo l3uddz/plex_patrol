@@ -153,7 +153,7 @@ class PlexStream:
             self.title = 'Unknown'
         else:
             if stream['type'] == 'episode':
-                self.title = "{} {}x{}".format(stream['grandparentTitle'], stream['parentIndex'], stream['index'])
+                self.title = u"{} {}x{}".format(stream['grandparentTitle'], stream['parentIndex'], stream['index'])
             else:
                 self.title = stream['title']
 
@@ -171,7 +171,7 @@ class PlexStream:
         else:
             stream_type = self.type
 
-        return "{user} is playing {media} using {player}. " \
+        return u"{user} is playing {media} using {player}. " \
                "Stream state: {state}, type: {type}. Session key: {session}".format(user=self.user,
                                                                                     media=self.title,
                                                                                     player=self.player,
