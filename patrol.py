@@ -109,7 +109,7 @@ if __name__ == "__main__":
         log.error("Could not validate server token, are you sure its correct...")
         exit(1)
     else:
-        log.info("Server token was validated, proceeding to uphold the laws!")
+        log.info("Server token was validated, proceeding to uphold the law!")
 
     while True:
         log.debug("Checking streams in %d seconds", config.CHECK_INTERVAL)
