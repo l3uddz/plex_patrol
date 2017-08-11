@@ -1,0 +1,16 @@
+[settings]
+DEBUG = false
+SERVER_URL = http://your-plex.com:32400
+SERVER_TOKEN = your_server_token
+SERVER_NAME = Your_Server_Name
+CHECK_INTERVAL = 90
+KICK_VIDEO_TRANSCODES = false
+KICK_AUDIO_TRANSCODES = false
+KICK_PAUSED_TRANSCODES = true
+KICK_PAUSED_DIRECTPLAY = false
+KICK_PAUSED_GRACE_MINS = 5
+KICK_CLIENT_PLAYERS = Plex Web, Client2, Client3
+KICK_PAUSED_MESSAGE = You are not allowed to pause a stream for that long... cya!
+KICK_TRANSCODE_MESSAGE = You are not allowed to transcode streams, use a better client!
+KICK_PLAYER_MESSAGE = You are not allowed to use this trash player. Use the official software from www.plex.tv/downloads -> Get An App!!!
+WHITELISTED_USERS = User1, User2, User3
