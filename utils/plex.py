@@ -124,8 +124,11 @@ class PlexStream:
             self.user = 'Unknown'
         if 'Player' in stream:
             self.player = stream['Player']['product']
+            self.ip = stream['Player']['remotePublicAddress']
         else:
             self.player = 'Unknown'
+            self.ip = 'Unknown'
+
         if 'Session' in stream:
             self.session_id = stream['Session']['id']
         else:

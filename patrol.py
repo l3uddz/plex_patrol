@@ -9,6 +9,7 @@ from utils.plex import Plex
 log = logger.get_root_logger()
 server = None
 watchlist = []
+ip_watchlist = {}
 
 
 def kill_paused_stream(stream, check_again_mins, kick_reason):
@@ -48,6 +49,14 @@ def should_kick_stream(stream):
         if client.lower() in stream.player.lower():
             return True, 0, config.KICK_PLAYER_MESSAGE
 
+    # is this user already streaming from another ip
+    if config.KICK_MULTIPLE_IP:
+        if stream.user in ip_watchlist:
+            if stream.ip != ip_watchlist[stream.user]:
+                return True, 0, config.KICK_MULTI_IP_MESSAGE
+        else:
+            ip_watchlist[stream.user] = stream.ip
+
     if stream.type == 'transcode':
         # stream is transcode - check specifics
         if stream.audio_decision == 'transcode' and config.KICK_AUDIO_TRANSCODES:
@@ -76,6 +85,9 @@ def check_streams():
     else:
         log.debug("Checking %d stream(s)", len(streams))
 
+    # clear ip watchlist before checking streams
+    ip_watchlist.clear()
+    # iterate streams and check / kick
     for stream in streams:
         if stream.user in config.WHITELISTED_USERS:
             log.info("Skipping whitelisted user: %s", stream.user)
