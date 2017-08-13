@@ -27,7 +27,7 @@ class Plex:
             'X-Plex-Provides': 'controller',
             'X-Plex-Platform': platform.uname()[0],
             'X-Plex-Platform-Version': platform.uname()[2],
-            'X-Plex-Product': 'paw_patrol',
+            'X-Plex-Product': 'plex_patrol',
             'X-Plex-Version': '0.9.5',
             'X-Plex-Device': platform.platform(),
             'X-Plex-Client-Identifier': str(hex(getnode()))
@@ -53,7 +53,7 @@ class Plex:
             'X-Plex-Provides': 'controller',
             'X-Plex-Platform': platform.uname()[0],
             'X-Plex-Platform-Version': platform.uname()[2],
-            'X-Plex-Product': 'paw_patrol',
+            'X-Plex-Product': 'plex_patrol',
             'X-Plex-Version': '0.9.5',
             'X-Plex-Device': platform.platform(),
             'X-Plex-Client-Identifier': str(hex(getnode()))
@@ -94,7 +94,7 @@ class Plex:
             'X-Plex-Provides': 'controller',
             'X-Plex-Platform': platform.uname()[0],
             'X-Plex-Platform-Version': platform.uname()[2],
-            'X-Plex-Product': 'paw_patrol',
+            'X-Plex-Product': 'plex_patrol',
             'X-Plex-Version': '0.9.5',
             'X-Plex-Device': platform.platform(),
             'X-Plex-Client-Identifier': str(hex(getnode()))
