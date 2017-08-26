@@ -137,8 +137,8 @@ class PlexStream:
             self.state = stream['Player']['state']
         else:
             self.state = 'Unknown'
-        if 'Media' in stream and 'Part' in stream['Media']:
-            self.type = stream['Media']['Part']['decision']
+        if 'Media' in stream and 'Part' in stream['Media'][0]:
+            self.type = stream['Media'][0]['Part'][0]['decision']
         else:
             self.type = 'Unknown'
         if self.type == 'transcode':
