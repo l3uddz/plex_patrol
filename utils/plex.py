@@ -137,10 +137,12 @@ class PlexStream:
             self.state = stream['Player']['state']
         else:
             self.state = 'Unknown'
-        if 'Media' in stream and 'Part' in stream['Media'][0]:
-            self.type = stream['Media'][0]['Part'][0]['decision']
+
+        if 'Media' in stream:
+            self.type = self.get_decision(stream['Media'])
         else:
             self.type = 'Unknown'
+
         if self.type == 'transcode':
             if 'TranscodeSession' in stream:
                 self.video_decision = stream['TranscodeSession']['videoDecision']
@@ -159,6 +161,15 @@ class PlexStream:
                 self.title = u"{} {}x{}".format(stream['grandparentTitle'], stream['parentIndex'], stream['index'])
             else:
                 self.title = stream['title']
+
+    def get_decision(self, medias):
+        for media in medias:
+            if 'Part' not in media:
+                continue
+            for part in media['Part']:
+                if 'decision' in part:
+                    return part['decision']
+        return 'Unknown'
 
     def __str__(self):
         if self.type == 'transcode':
