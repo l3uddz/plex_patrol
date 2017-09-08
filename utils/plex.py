@@ -162,7 +162,8 @@ class PlexStream:
             else:
                 self.title = stream['title']
 
-    def get_decision(self, medias):
+    @staticmethod
+    def get_decision(medias):
         for media in medias:
             if 'Part' not in media:
                 continue
