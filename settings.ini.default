@@ -17,6 +17,8 @@ KICK_AUDIO_TRANSCODES = false
 KICK_CLIENT_PLAYERS = Plex Web, Client2, Client3
 # instantly kick streams from users with multiple ips
 KICK_MULTIPLE_IP = true
+# how many streams from unique ips before kicking extra user streams if above is true
+KICK_MULTIPLE_IP_MAX = 1
 # delay kick paused transcodes? (direct streams count too)
 KICK_PAUSED_TRANSCODES = true
 # delay kick paused direct plays?

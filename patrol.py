@@ -12,6 +12,30 @@ watchlist = []
 ip_watchlist = {}
 
 
+# ip watchlist stuff
+
+def check_stream_count(user):
+    if user in ip_watchlist:
+        return len(ip_watchlist[user])
+    else:
+        return 0
+
+
+def add_stream_ip(user, ip):
+    if user in ip_watchlist:
+        # does ip exist
+        if ip in ip_watchlist[user]:
+            log.debug("Skipping adding ip %s to watchlist for user %s because it is already in there!", ip, user)
+            return
+        else:
+            ip_watchlist[user].append(ip)
+    else:
+        ip_watchlist[user] = [ip]
+    return
+
+
+# main
+
 def kill_paused_stream(stream, check_again_mins, kick_reason):
     log.info("%s will have their stream killed in %d mins, unless it is resumed", stream.user, check_again_mins)
     time.sleep(60 * check_again_mins)
@@ -49,13 +73,11 @@ def should_kick_stream(stream):
         if client.lower() in stream.player.lower():
             return True, 0, config.KICK_PLAYER_MESSAGE
 
-    # is this user already streaming from another ip
-    if config.KICK_MULTIPLE_IP:
-        if stream.user in ip_watchlist:
-            if stream.ip != ip_watchlist[stream.user]:
-                return True, 0, config.KICK_MULTI_IP_MESSAGE
-        else:
-            ip_watchlist[stream.user] = stream.ip
+    # is this user already streaming from more than allowed ips?
+    if config.KICK_MULTIPLE_IP and config.KICK_MULTIPLE_IP_MAX:
+        add_stream_ip(stream.user, stream.ip)
+        if check_stream_count(stream.user) > config.KICK_MULTIPLE_IP_MAX:
+            return True, 0, config.KICK_MULTI_IP_MESSAGE
 
     if stream.type == 'transcode':
         # stream is transcode - check specifics

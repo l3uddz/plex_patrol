@@ -5,7 +5,7 @@ from utils import config
 
 # Setup logging
 log_formatter = logging.Formatter(
-    '%(asctime)s - %(levelname)-10s - %(name)-15s -  %(funcName)-25s- %(message)s')
+    '%(asctime)s - %(levelname)-10s - %(name)-40s -  %(funcName)-25s- %(message)s')
 
 rootLogger = logging.getLogger('plex_patrol')
 
