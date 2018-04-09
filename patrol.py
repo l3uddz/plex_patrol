@@ -60,7 +60,7 @@ def kill_paused_stream(stream, check_again_mins, kick_reason):
                     watchlist.remove(stream.session_id)
                     return
             else:
-                log.info("%s stream was resumed, so we wont kill their stream, their in the clear!", stream.user)
+                log.info("%s stream was resumed, so we wont kill their stream, they're in the clear!", stream.user)
                 watchlist.remove(stream.session_id)
                 return
     log.info("%s is no longer streaming...", stream.user)
