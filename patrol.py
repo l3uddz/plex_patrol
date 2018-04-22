@@ -1,6 +1,6 @@
-#!/usr/bin/env python2.7
-import thread
+#!/usr/bin/env python3
 import time
+from threading import Thread
 
 from utils import config
 from utils import logger
@@ -130,7 +130,7 @@ def check_streams():
                 if stream.session_id in watchlist:
                     log.info("%s stream is already on the watchlist, skipping..", stream.user)
                 else:
-                    thread.start_new_thread(kill_paused_stream, (stream, kick_mins, kick_msg))
+                    Thread(target=kill_paused_stream, args=(stream, kick_mins, kick_msg)).start()
                     watchlist.append(stream.session_id)
     log.debug("Finished checking streams")
 
