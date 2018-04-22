@@ -1,6 +1,6 @@
 import logging
 import platform
-from urlparse import urljoin
+from urllib.parse import urljoin
 from uuid import getnode
 
 import requests
