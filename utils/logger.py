@@ -16,7 +16,7 @@ console_handler.setFormatter(log_formatter)
 rootLogger.addHandler(console_handler)
 
 # Rotating Log Files
-file_handler = RotatingFileHandler('status.log', maxBytes=1024 * 1024 * 4, backupCount=5)
+file_handler = RotatingFileHandler(config.LOGFILE, maxBytes=1024 * 1024 * 4, backupCount=5)
 file_handler.setLevel(logging.DEBUG)
 file_handler.setFormatter(log_formatter)
 rootLogger.addHandler(file_handler)

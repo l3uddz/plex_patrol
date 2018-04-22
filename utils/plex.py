@@ -41,7 +41,7 @@ class Plex:
             else:
                 log.debug("Server responded with status_code=%r, content: %r", r.status_code, r.content)
                 return False
-        except:
+        except Exception:
             log.exception("Exception validating server token=%r, url=%r: ", self.token, self.url)
             return False
 
@@ -82,7 +82,7 @@ class Plex:
                     "Server url or token was invalid, token=%r, request_url=%r, status_code=%r, content: %r",
                     self.token, request_url, r.status_code, r.content)
                 return None
-        except:
+        except Exception:
             log.exception("Exception retrieving streams from request_url=%r, token=%r: ", request_url, self.token)
             return None
 
@@ -110,7 +110,7 @@ class Plex:
                 return True
             else:
                 return False
-        except:
+        except Exception:
             log.exception("Exception killing stream %r: ", session_id)
             return False
 
