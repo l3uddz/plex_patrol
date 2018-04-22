@@ -1,6 +1,12 @@
-from decouple import config, Csv
+from decouple import AutoConfig, Csv
+from os import (path, getenv)
+
+# Scan ENV dir for config and fallback to current dir
+config = AutoConfig(getenv('PLEX_PATROL_CONFIG', path.dirname(__file__)))
 
 DEBUG = config('DEBUG', False, cast=bool)
+LOGFILE = getenv('PLEX_PATROL_LOGFILE') or 'status.log'
+
 SERVER_URL = config('SERVER_URL')
 SERVER_TOKEN = config('SERVER_TOKEN')
 SERVER_NAME = config('SERVER_NAME')

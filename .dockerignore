@@ -28,3 +28,12 @@ __pycache__/
 
 # Pyenv
 .python-version
+
+# Git
+.git
+
+# Docker files
+docker
+
+# Systemd
+system
