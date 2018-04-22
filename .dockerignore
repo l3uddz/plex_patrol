@@ -32,8 +32,5 @@ __pycache__/
 # Git
 .git
 
-# Docker files
-docker
-
 # Systemd
 system
