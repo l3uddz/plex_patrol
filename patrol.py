@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from threading import Thread
 import time
+from threading import Thread
 
 from utils import config
 from utils import logger

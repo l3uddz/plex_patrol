@@ -1,5 +1,6 @@
-from decouple import AutoConfig, Csv
 from os import (path, getenv)
+
+from decouple import AutoConfig, Csv
 
 # Scan ENV dir for config and fallback to current dir
 config = AutoConfig(getenv('PLEX_PATROL_CONFIG', path.dirname(__file__)))
