@@ -102,7 +102,7 @@ def check_streams():
         log.error("There was an error while retrieving the active streams...")
         return
     elif not streams:
-        log.info("There's currently no streams to check")
+        log.debug("There's currently no streams to check")
         return
     else:
         log.debug("Checking %d stream(s)", len(streams))
@@ -112,7 +112,7 @@ def check_streams():
     # iterate streams and check / kick
     for stream in streams:
         if stream.user in config.WHITELISTED_USERS:
-            log.info("Skipping whitelisted user: %s", stream.user)
+            log.debug("Skipping whitelisted user: %s", stream.user)
             continue
         else:
             log.info("Checking stream: %s", stream)
