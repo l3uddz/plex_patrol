@@ -38,34 +38,45 @@ def add_stream_ip(user, ip):
 
 def kill_paused_stream(stream, check_again_mins, kick_reason):
     log.info("%s will have their stream killed in %d mins, unless it is resumed", stream.user, check_again_mins)
-    time.sleep(60 * check_again_mins)
-    current_streams = server.get_streams()
-    if current_streams is None:
-        log.error(
-            "Unable to check if %s stream is still paused because there was an error retrieving the active streams...",
-            stream.user)
-        watchlist.remove(stream.session_id)
-        return
+    #Tracker for total time spent paused
+    totalTimePaused = 0
+    while(1):
+        streamFound = False
+        current_streams = server.get_streams()
+        if current_streams is None:
+            log.error(
+                "Unable to check if %s stream is still paused because there was an error retrieving the active streams...",
+                stream.user)
+            watchlist.remove(stream.session_id)
+            return
 
-    for current_stream in current_streams:
-        if current_stream.session_id == stream.session_id:
-            if current_stream.state == 'paused':
-                if server.kill_stream(stream.session_id, kick_reason):
-                    log.info("Kicked %s because their stream was still paused %d minutes later", stream.user,
-                             check_again_mins)
-                    watchlist.remove(stream.session_id)
-                    return
+        for current_stream in current_streams:
+            if current_stream.session_id == stream.session_id:
+                streamFound = True
+                if current_stream.state == 'paused':
+                    #Increment total pause time by check interval and proceed to see if u
+                    totalTimePaused += config.CHECK_INTERVAL
+                    if(totalTimePaused >= (check_again_mins * 60)):
+                            if server.kill_stream(stream.session_id, kick_reason):
+                                log.info("Kicked %s because their stream was still paused %d minutes later", stream.user,
+                                         check_again_mins)
+                                watchlist.remove(stream.session_id)
+                                return
+                            else:
+                                log.error("Unable to kick the stream of %s, not sure why...", stream.user)
+                                watchlist.remove(stream.session_id)
+                                return
+                    else:
+                            time.sleep(config.CHECK_INTERVAL)
+                            break
                 else:
-                    log.error("Unable to kick the stream of %s, not sure why...", stream.user)
+                    log.info("%s stream was resumed, so we wont kill their stream, they're in the clear!", stream.user)
                     watchlist.remove(stream.session_id)
                     return
-            else:
-                log.info("%s stream was resumed, so we wont kill their stream, they're in the clear!", stream.user)
-                watchlist.remove(stream.session_id)
-                return
-    log.info("%s is no longer streaming...", stream.user)
-    watchlist.remove(stream.session_id)
-
+        if streamFound == False:
+            log.info("%s is no longer streaming...", stream.user)
+            watchlist.remove(stream.session_id)
+            return
 
 def should_kick_stream(stream):
     # is stream using a blacklisted client
