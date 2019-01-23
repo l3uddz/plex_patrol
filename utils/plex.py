@@ -129,6 +129,14 @@ class PlexStream:
             self.player = 'Unknown'
             self.ip = 'Unknown'
 
+        self.quality = "Unknown"
+        if 'Media' in stream:
+            for media in stream['Media']:
+                if 'Part' in media:
+                    for part in media['Part']:
+                        if 'Stream' in part and 'displayTitle' in part['Stream'][0]:
+                            self.quality = part['Stream'][0]['displayTitle'].split(' ')[0].upper()
+
         if 'Session' in stream:
             self.session_id = stream['Session']['id']
         else:

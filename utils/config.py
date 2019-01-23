@@ -13,6 +13,8 @@ SERVER_TOKEN = config('SERVER_TOKEN')
 SERVER_NAME = config('SERVER_NAME')
 CHECK_INTERVAL = config('CHECK_INTERVAL', 60, cast=int)
 
+KICK_4K_TRANSCODE = config('KICK_4K_TRANSCODE',False,cast=bool)
+KICK_4K_TRANSCODE_MESSAGE = config('KICK_4K_TRANSCODE_MESSAGE','You are not allowed to transcode 4K content, use a better client!')
 KICK_VIDEO_TRANSCODES = config('KICK_VIDEO_TRANSCODES', False, cast=bool)
 KICK_AUDIO_TRANSCODES = config('KICK_AUDIO_TRANSCODES', False, cast=bool)
 KICK_CLIENT_PLAYERS = config('KICK_CLIENT_PLAYERS', [], cast=Csv())
