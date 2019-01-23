@@ -98,6 +98,8 @@ def should_kick_stream(stream):
             return True, 0, config.KICK_TRANSCODE_MESSAGE
         if stream.state == 'paused' and config.KICK_PAUSED_TRANSCODES:
             return True, config.KICK_PAUSED_GRACE_MINS, config.KICK_PAUSED_MESSAGE
+        if stream.quality == '4K' and config.KICK_4K_TRANSCODE:
+            return True, 0, config.KICK_4K_TRANSCODE_MESSAGE
 
     else:
         # stream is directplay - check specifics
