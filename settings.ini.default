@@ -28,7 +28,7 @@ KICK_PAUSED_DIRECTPLAY = false
 # when the KICK_PAUSED* options above are true, the user has this many minutes to resume, otherwise kick
 KICK_PAUSED_GRACE_MINS = 5
 # messages to be displayed for different kick types
-KICK_4K_TRANSCODE_MESSAGE = You are not allowed to transcode 4K content, use a better client!
+KICK_4K_TRANSCODE_MESSAGE = You are not allowed to transcode 4K content, fix your settings!
 KICK_PAUSED_MESSAGE = You are not allowed to pause a stream for that long... cya!
 KICK_TRANSCODE_MESSAGE = You are not allowed to transcode streams, use a better client!
 KICK_PLAYER_MESSAGE = You are not allowed to use this trash player. Use the official software from www.plex.tv/downloads -> Get An App!!!
