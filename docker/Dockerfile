@@ -1,7 +1,7 @@
 FROM python:3.6-alpine3.7
 
 # Arguments for build tracking
-ARG BRANCH=
+ARG BRANCH=ban_ips
 ARG COMMIT=
 
 ENV \
