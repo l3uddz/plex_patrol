@@ -13,6 +13,8 @@ SERVER_TOKEN = config('SERVER_TOKEN')
 SERVER_NAME = config('SERVER_NAME')
 CHECK_INTERVAL = config('CHECK_INTERVAL', 60, cast=int)
 
+BANNED_IPS = config('BANNED_IPS', [], cast=Csv())
+
 KICK_4K_TRANSCODE = config('KICK_4K_TRANSCODE',False,cast=bool)
 KICK_4K_TRANSCODE_MESSAGE = config('KICK_4K_TRANSCODE_MESSAGE','You are not allowed to transcode 4K content, use a better client!')
 KICK_VIDEO_TRANSCODES = config('KICK_VIDEO_TRANSCODES', False, cast=bool)
@@ -20,6 +22,7 @@ KICK_AUDIO_TRANSCODES = config('KICK_AUDIO_TRANSCODES', False, cast=bool)
 KICK_CLIENT_PLAYERS = config('KICK_CLIENT_PLAYERS', [], cast=Csv())
 KICK_MULTIPLE_IP = config('KICK_MULTIPLE_IP', False, cast=bool)
 KICK_MULTIPLE_IP_MAX = config('KICK_MULTIPLE_IP_MAX', 1, cast=int)
+KICK_BANNED_IPS = config('KICK_BANNED_IPS', False, cast=bool)
 
 KICK_PAUSED_TRANSCODES = config('KICK_PAUSED_TRANSCODES', False, cast=bool)
 KICK_PAUSED_DIRECTPLAY = config('KICK_PAUSED_DIRECTPLAY', False, cast=bool)
@@ -32,5 +35,6 @@ KICK_PLAYER_MESSAGE = config('KICK_PLAYER_MESSAGE',
                              'You are not allowed to use this trash player. '
                              'Use the official software from www.plex.tv/downloads -> Get An App!!!')
 KICK_MULTI_IP_MESSAGE = config('KICK_MULTI_IP_MESSAGE', 'You are not allowed to stream from more than 1 IP address!')
+KICK_BANNED_IP_MESSAGE = config('KICKED_BANNED_IP_MESSAGE', 'This IP is not approved for use with this server' )
 
 WHITELISTED_USERS = config('WHITELISTED_USERS', [], cast=Csv())
