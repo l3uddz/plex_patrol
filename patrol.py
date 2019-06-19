@@ -79,7 +79,15 @@ def kill_paused_stream(stream, check_again_mins, kick_reason):
             return
 
 def should_kick_stream(stream):
-    # is stream using a blacklisted client
+
+
+    # check if current stream ip is banned
+    if config.KICK_BANNED_IPS:     
+        for ip in config.BANNED_IPS:
+            if stream.ip.strip() == ip:
+                log.info("Kicking stream!\nUser: %s / IP: %s \n", stream.user, stream.ip)
+                return True, 0, config.KICK_BANNED_IP_MESSAGE
+
     for client in config.KICK_CLIENT_PLAYERS:
         if client.lower() in stream.player.lower():
             return True, 0, config.KICK_PLAYER_MESSAGE
