@@ -8,8 +8,8 @@ ENV \
   APP_DIR=plex_patrol \
   BRANCH=${BRANCH} \
   COMMIT=${COMMIT} \
-  PLEX_PATROL_CONFIG=/config/settings.ini \
-  PLEX_PATROL_LOGFILE=/config/status.log
+  PLEX_PATROL_CONFIG=./config/settings.ini \
+  PLEX_PATROL_LOGFILE=./config/status.log
 
 COPY . /${APP_DIR}
 
@@ -19,7 +19,7 @@ RUN \
   apk --no-cache -U upgrade && \
   echo "** Install PIP dependencies **" && \
   pip install --no-cache-dir --upgrade pip setuptools && \
-  pip install --no-cache-dir --upgrade -r /${APP_DIR}/requirements.txt
+  pip install --no-cache-dir --upgrade -r ./${APP_DIR}/requirements.txt
 
 # Change directory
 WORKDIR /${APP_DIR}
