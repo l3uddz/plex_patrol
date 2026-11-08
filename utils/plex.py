@@ -34,7 +34,7 @@ class Plex:
         }
 
         try:
-            r = requests.get(request_url, headers=headers, verify=False)
+            r = requests.get(request_url, headers=headers, verify=False, timeout=30)
             if r.status_code == 200 and r.headers['Content-Type'] == 'application/json':
                 log.debug("Server responded with status_code=%r, content: %r", r.status_code, r.json())
                 return True
@@ -60,7 +60,7 @@ class Plex:
         }
 
         try:
-            r = requests.get(request_url, headers=headers, verify=False)
+            r = requests.get(request_url, headers=headers, verify=False, timeout=30)
             if r.status_code == 200 and r.headers['Content-Type'] == 'application/json':
                 result = r.json()
                 log.debug("Server responded with status_code=%r, content: %r", r.status_code, r.content)
@@ -104,7 +104,7 @@ class Plex:
             'reason': reason
         }
         try:
-            r = requests.get(request_url, headers=headers, params=payload, verify=False)
+            r = requests.get(request_url, headers=headers, params=payload, verify=False, timeout=30)
             log.debug("Server responded with status_code=%r, content: %r", r.status_code, r.content)
             if r.status_code == 200:
                 return True
